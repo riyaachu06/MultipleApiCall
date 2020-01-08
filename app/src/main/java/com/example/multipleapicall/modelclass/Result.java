@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Result implements Parcelable {
@@ -53,48 +54,58 @@ public class Result implements Parcelable {
     @SerializedName("vote_average")
     @Expose
     private Double voteAverage;
-    private   Boolean MOVIERESULT = false;
+    private List movieSet = new ArrayList();
+    private Boolean AllMovieSet = false;
+
+    public Boolean getLocation() {
+        return Location;
+    }
+
+    public void setLocation(Boolean location) {
+        Location = location;
+    }
+
+    private Boolean Location = false;
+
+    public Boolean getShareApp() {
+        return shareApp;
+    }
+
+    public void setShareApp(Boolean shareApp) {
+        this.shareApp = shareApp;
+    }
+
+    private Boolean shareApp=false;
+
+    public Boolean getAllMovieSet() {
+        return AllMovieSet;
+    }
+
+    public void setAllMovieSet(Boolean allMovieSet) {
+        AllMovieSet = allMovieSet;
+    }
+
+    public Boolean getPopularMovieSet() {
+        return PopularMovieSet;
+    }
+
+    public void setPopularMovieSet(Boolean popularMovieSet) {
+        PopularMovieSet = popularMovieSet;
+    }
+
+    private Boolean PopularMovieSet = false;
+
+    public List getMovieSet() {
+        return movieSet;
+    }
+
+    public void setMovieSet(List movieSet) {
+        this.movieSet = movieSet;
+    }
 
     public Result() {
 
     }
-
-    public Result getSingleMovieResult() {
-        return SingleMovieResult;
-    }
-
-    public void setSingleMovieResult(Result singleMovieResult) {
-        SingleMovieResult = singleMovieResult;
-    }
-
-    private Result SingleMovieResult;
-
-    public Result getSinglepopularmovieResult() {
-        return singlepopularmovieResult;
-    }
-
-    public void setSinglepopularmovieResult(Result singlepopularmovieResult) {
-        this.singlepopularmovieResult = singlepopularmovieResult;
-    }
-
-    private Result singlepopularmovieResult;
-    public Boolean getMOVIERESULT() {
-        return MOVIERESULT;
-    }
-
-    public void setMOVIERESULT(Boolean MOVIERESULT) {
-        this.MOVIERESULT = MOVIERESULT;
-    }
-
-    public Boolean getPOPULARMOVIERESULT() {
-        return POPULARMOVIERESULT;
-    }
-
-    public void setPOPULARMOVIERESULT(Boolean POPULARMOVIERESULT) {
-        this.POPULARMOVIERESULT = POPULARMOVIERESULT;
-    }
-
-    private   Boolean POPULARMOVIERESULT = false;
 
     public Result(Parcel in) {
         posterPath = in.readString();

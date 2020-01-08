@@ -32,12 +32,11 @@ public class PopularMovieViewRepo {
 
         final MutableLiveData<DatumResponse> mutableLiveData = new MutableLiveData<>();
         Call<DatumResponse> call;
-        call = ApiClientMovie.getInstance(application).getPopoularMovieDetails().getPopoularMovieDetails(api_key);
+        call = ApiClientMovie.getInstance(application).getDetails().getPopoularMovieDetails(api_key);
         call.enqueue(new Callback<DatumResponse>() {
             @Override
             public void onResponse(Call<DatumResponse> call, Response<DatumResponse> response) {
                 if (response != null) {
-
                     mutableLiveData.setValue(response.body());
                 }
             }
@@ -48,7 +47,5 @@ public class PopularMovieViewRepo {
             }
         });
         return mutableLiveData;
-
-
     }
 }

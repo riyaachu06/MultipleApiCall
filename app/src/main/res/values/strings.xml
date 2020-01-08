@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MultipleApiCall</string>
+    <string name="map_key" translatable="false"> </string>
 </resources>

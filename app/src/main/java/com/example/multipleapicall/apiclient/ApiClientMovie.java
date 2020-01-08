@@ -8,13 +8,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClientMovie {
-    public static final String BASE_URL_Movie = "https://api.themoviedb.org/";
+    public static final String BASE_URL_MOVIE = "https://api.themoviedb.org/";
     private final Retrofit retrofit ;
     private static ApiClientMovie mInstance;
 
     public ApiClientMovie(Context context) {
         retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL_Movie)
+                .baseUrl(BASE_URL_MOVIE)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -27,10 +27,7 @@ public class ApiClientMovie {
     }
 
 
-    public Apiinterface getMovieDetails() {
-        return retrofit.create(Apiinterface.class);
-    }
-    public Apiinterface getPopoularMovieDetails() {
+    public Apiinterface getDetails() {
         return retrofit.create(Apiinterface.class);
     }
 }

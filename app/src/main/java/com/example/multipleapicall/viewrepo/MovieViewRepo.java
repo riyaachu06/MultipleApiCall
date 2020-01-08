@@ -11,7 +11,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class MovieViewRepo {
     private static String api_key = "8a940d7709a57a2398b0f39f63ce3f30";
     private static MovieViewRepo repoInstance;
@@ -20,19 +19,16 @@ public class MovieViewRepo {
     public MovieViewRepo(Application application) {
         this.application = application;
     }
-
     public static MovieViewRepo getInstance(Application application) {
         if (repoInstance == null) {
             repoInstance = new MovieViewRepo(application);
         }
         return repoInstance;
     }
-
     public MutableLiveData<DatumResponse> getMovieDetails() {
         final MutableLiveData<DatumResponse> mutableLiveData = new MutableLiveData<>();
         Call<DatumResponse> call;
-        call = ApiClientMovie.getInstance(application).getMovieDetails().
-                getMovieDetails(api_key);
+        call = ApiClientMovie.getInstance(application).getDetails().getMovieDetails(api_key);
         call.enqueue(new Callback<DatumResponse>() {
             @Override
             public void onResponse(Call<DatumResponse> call, Response<DatumResponse> response) {
@@ -40,7 +36,6 @@ public class MovieViewRepo {
                     mutableLiveData.setValue(response.body());
                 }
             }
-
             @Override
             public void onFailure(Call<DatumResponse> call, Throwable t) {
 
@@ -48,6 +43,4 @@ public class MovieViewRepo {
         });
         return mutableLiveData;
     }
-
-
 }
