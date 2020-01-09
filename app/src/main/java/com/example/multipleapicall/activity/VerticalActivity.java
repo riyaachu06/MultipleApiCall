@@ -48,13 +48,9 @@ public class VerticalActivity extends AppCompatActivity implements OnItemClickLi
                 if (datumResponse.getResults() != null) {
                     Result movieresultnew = new Result();
                     movieresultnew.setAllMovieSet(true);
-                    movieresultnew.setShareApp(true);
-                    movieresultnew.setLocation(true);
                     movieresultnew.setMovieSet(datumResponse.getResults());
-                    dataset.add(movieresultnew);
+                    dataset.add(0,movieresultnew);
                     verticalRecycleviewAdapter.notifyItemChanged(0);
-
-
                 }
             }
         });
@@ -67,11 +63,18 @@ public class VerticalActivity extends AppCompatActivity implements OnItemClickLi
                 if (datumResponse.getResults() != null) {
                     Result popularmovieresultnew = new Result();
                     popularmovieresultnew.setPopularMovieSet(true);
-                    popularmovieresultnew.setShareApp(true);
-                    popularmovieresultnew.setLocation(true);
                     popularmovieresultnew.setMovieSet(datumResponse.getResults());
                     dataset.add(popularmovieresultnew);
-                    verticalRecycleviewAdapter.notifyItemChanged(1);
+
+                    Result shareapp = new Result();
+                    shareapp.setShareApp(true);
+                    dataset.add(shareapp);
+
+                    Result location = new Result();
+                    location.setLocation(true);
+                    dataset.add(1,location);
+
+                    verticalRecycleviewAdapter.notifyItemRangeChanged(1,datumResponse.getResults().size()-1);
                 }
             }
         });

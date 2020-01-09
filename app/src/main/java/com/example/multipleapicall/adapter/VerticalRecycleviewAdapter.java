@@ -29,11 +29,11 @@ public class VerticalRecycleviewAdapter extends RecyclerView.Adapter {
     MylocationLayoutBinding mylocationLayoutBinding;
     private OnItemClickListener mListener;
 
-
     public VerticalRecycleviewAdapter(Context context, List<Result> dataset) {
         this.dataset = dataset;
         this.context = context;
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -50,8 +50,7 @@ public class VerticalRecycleviewAdapter extends RecyclerView.Adapter {
         else if (viewType == 3) {
             sharelayoutBinding = SharelayoutBinding.inflate(inflater, parent, false);
             return new ShareViewHolder(sharelayoutBinding, mListener);
-        }
-        else
+        } else
             blankLayoutBinding = BlankLayoutBinding.inflate(inflater, parent, false);
         return new BlankViewHolder(blankLayoutBinding);
 
@@ -60,15 +59,18 @@ public class VerticalRecycleviewAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
         Result item = dataset.get(position);
-         if (item.getPopularMovieSet()||item.getAllMovieSet()) {
+        if (item.getAllMovieSet()) {
             return 1;
         }
-         else if (item.getLocation()) {
-             return 2;
-         }
+        else if (item.getPopularMovieSet()) {
+            return 1;
+        }
+        else if (item.getLocation()) {
+            return 2;
+        }
         else if (item.getShareApp()) {
-             return 3;
-         }
+            return 3;
+        }
         return super.getItemViewType(position);
     }
 
@@ -80,6 +82,7 @@ public class VerticalRecycleviewAdapter extends RecyclerView.Adapter {
             setVerticalrViewHolder(verticalViewHolder, position);
         }
     }
+
     private void setVerticalrViewHolder(VerticalViewHolder verticalViewHolder, int position) {
         if (dataset.size() > position) {
             Result titlemovie = dataset.get(position);
@@ -93,9 +96,9 @@ public class VerticalRecycleviewAdapter extends RecyclerView.Adapter {
             verticalViewHolder.setItemListDataAdapter(dataset.get(position).getMovieSet(), context);
         }
     }
+
     @Override
     public int getItemCount() {
-
         return dataset.size();
     }
 
